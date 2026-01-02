@@ -320,7 +320,8 @@ uint32_t leapster_state::leapster_aux0048_r()
 
 void leapster_state::leapster_aux0048_w(uint32_t data)
 {
-	logerror("%s: leapster_aux0047_w %08x\n", machine().describe_context(), data);
+	// fixed logging string (was incorrectly logging 0047)
+	logerror("%s: leapster_aux0048_w %08x\n", machine().describe_context(), data);
 }
 
 void leapster_state::leapster_aux004b_w(uint32_t data)
@@ -442,6 +443,8 @@ void leapster_state::machine_start()
 	}
 
 	save_item(NAME(m_1a_data));
+	// ensure the palette pointer is saved/restored for correct resume/save state handling
+	save_item(NAME(m_1a_pointer));
 }
 
 void leapster_state::machine_reset()
